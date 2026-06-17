@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class CreateTaskRequest {
 
-    @NotBlank(message = "\"Title must not be blank\"")
+    @NotBlank(message = "Title must not be blank")
     private String title;
 
     private String description;
