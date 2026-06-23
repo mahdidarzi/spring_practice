@@ -1,20 +1,27 @@
 package com.example.taskmanagement.model;
 
+import jakarta.persistence.*;
 
+@Entity
 public class Task {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
-    private String description;
+
     private String priority;
+
+    private boolean completed;
 
     public Task() {}
 
-    public Task(Long id, String title, String description, String priority) {
+    public Task(Long id, String title, String priority, boolean completed) {
         this.id = id;
         this.title = title;
-        this.description = description;
         this.priority = priority;
+        this.completed = completed;
     }
 
     public Long getId() {
@@ -25,12 +32,12 @@ public class Task {
         return title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String getPriority() {
         return priority;
+    }
+
+    public boolean isCompleted() {
+        return completed;
     }
 
     public void setId(Long id) {
@@ -41,11 +48,11 @@ public class Task {
         this.title = title;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 }
