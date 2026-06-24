@@ -1,27 +1,12 @@
 package com.example.taskmanagement.repository;
 
 import com.example.taskmanagement.model.Task;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.*;
+import java.util.List;
 
-@Repository
-public class TaskRepository {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    private final Map<Long, Task> tasks = new HashMap<>();
-    private Long currentId = 1L;
+    List<Task> findByPriority(String priority);
 
-    public Task save(Task task) {
-        task.setId(currentId++);
-        tasks.put(task.getId(), task);
-        return task;
-    }
-
-    public Optional<Task> findById(Long id) {
-        return Optional.ofNullable(tasks.get(id));
-    }
-
-    public List<Task> findAll() {
-        return new ArrayList<>(tasks.values());
-    }
 }
